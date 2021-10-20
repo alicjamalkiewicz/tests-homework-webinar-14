@@ -18,8 +18,8 @@ public class ZadanieDomowe5 extends BaseTest{
         WebElement buyNowButton = driver.findElement(By.cssSelector(".button.special"));
         buyNowButton.click();
 
-        WebElement toBePaid = driver.findElement(By.name("prices"));
-        Assert.assertEquals(toBePaid.getText(), "60");
+        WebElement toBePaid = driver.findElement(By.cssSelector("#three > div > form > div.row > div > font:nth-child(2)"));
+        Assert.assertEquals(toBePaid.getText(), "$60.00");
 
     }
 }
