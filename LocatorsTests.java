@@ -1,9 +1,97 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * Zadanie domowe
+ * 1. wchodzimy na stronę http://sampleshop.inqa.pl/
+ * 2. klikamy "Kontakt z nami" - nie korzystamy z By.linkText()
+ *
+ * Uzupełniamy formularz:
+ * 1. Temat = webmaster
+ * 2. podajemy e-mail
+ * 3. wpisujemy treść
+ *
+ * Klikamy wyślij
+ * Sprawdzamy czy wiadomość została wysłana
+ */
 public class LocatorsTests extends BaseTest {
+
+    @Test
+    public void xpathExample() {
+        driver.get("http://sampleshop.inqa.pl/kontakt");
+
+        WebElement meessageElement = driver.findElement(By.xpath("//*[@id=\"content\"]/section/form/section/div[5]/div/textarea"));
+
+        Assert.assertTrue(meessageElement.isDisplayed());
+    }
+
+    @Test
+    public void nameExample() {
+        driver.get("http://sampleshop.inqa.pl/kontakt");
+
+        WebElement emailElement = driver.findElement(By.name("from"));
+
+        Assert.assertTrue(emailElement.isDisplayed());
+    }
+
+    @Test
+    public void partialLinkTextExample() {
+        driver.get("http://sampleshop.inqa.pl/");
+
+        driver.findElement(By.partialLinkText("Terms")).click();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "http://sampleshop.inqa.pl/content/3-terms-and-conditions-of-use");
+    }
+
+    @Test
+    public void linkTextExample() {
+        driver.get("http://sampleshop.inqa.pl/");
+
+        driver.findElement(By.linkText("Kontakt z nami")).click();
+
+        Assert.assertEquals(driver.getCurrentUrl(), "http://sampleshop.inqa.pl/kontakt");
+    }
+
+    @Test
+    public void idLocationExample() {
+        driver.get("http://sampleshop.inqa.pl/");
+
+        WebElement logoElement = driver.findElement(By.id("_desktop_logo"));
+
+        Assert.assertTrue(logoElement.isDisplayed());
+    }
+
+    @Test
+    public void tagNameExample() {
+        driver.get("http://sampleshop.inqa.pl/kontakt");
+
+        WebElement meessageElement = driver.findElement(By.tagName("textarea"));
+
+        Assert.assertTrue(meessageElement.isDisplayed());
+    }
+
+    @Test
+    public void cssSelectorExample() {
+        driver.get("http://sampleshop.inqa.pl/");
+
+        WebElement cardProductCount = driver.findElement(By.cssSelector("#_desktop_cart > div > div > span.cart-products-count"));
+        String actualCount = cardProductCount.getText();
+
+        Assert.assertEquals(actualCount, "(0)");
+    }
+
+    @Test
+    public void classNameExample() {
+        driver.get("http://sampleshop.inqa.pl/");
+
+        WebElement cardProductCount = driver.findElement(By.className("cart-products-count"));
+        String actualCount = cardProductCount.getText();
+
+        Assert.assertEquals(actualCount, "(0)");
+    }
 
     @Test
     public void properCredentialsLoginTest() {
@@ -23,4 +111,26 @@ public class LocatorsTests extends BaseTest {
 
         Assert.assertTrue(successText.contains("You logged into a secure area!"));
     }
+
+    @Test
+    public void homeWorkContactForm(){
+        driver.get("http://sampleshop.inqa.pl/");
+
+        WebElement kontaktZNami = driver.findElement(By.id("contact-link"));
+        kontaktZNami.click();
+
+        WebElement tematList = driver.findElement(By.name("id_contact"));
+        Select select = new Select(tematList);
+        select.selectByValue("1");
+
+        WebElement adresEmail = driver.findElement(By.name("email"));
+        adresEmail.sendKeys("fakemail@grr.la");
+
+        WebElement widomoscField = driver.findElement(By.name("message"));
+        widomoscField.sendKeys("This is very fake message");
+
+        WebElement wyslijButton = driver.findElement(By.name("submitMessage"));
+        wyslijButton.click();
+    }
+
 }
