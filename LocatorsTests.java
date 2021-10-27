@@ -123,7 +123,7 @@ public class LocatorsTests extends BaseTest {
         Select select = new Select(tematList);
         select.selectByValue("1");
 
-        WebElement adresEmail = driver.findElement(By.name("email"));
+        WebElement adresEmail = driver.findElement(By.name("from"));
         adresEmail.sendKeys("fakemail@grr.la");
 
         WebElement widomoscField = driver.findElement(By.name("message"));
@@ -131,6 +131,9 @@ public class LocatorsTests extends BaseTest {
 
         WebElement wyslijButton = driver.findElement(By.name("submitMessage"));
         wyslijButton.click();
+
+        WebElement successMessage = driver.findElement((By.xpath("//*[@id=\"content\"]/section/form/div/ul/li")));
+        Assert.assertEquals(successMessage.getText(), "Twoja wiadomość została pomyślnie wysłana do obsługi.");
     }
 
 }
