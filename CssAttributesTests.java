@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.ScreenshotUtil;
+import java.util.List;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -74,6 +76,8 @@ public class CssAttributesTests extends BaseTest {
 
         String hoverButtonColor = clickHereButton.getCssValue("color");
         System.out.println(hoverButtonColor);
+
+        ScreenshotUtil.takeScreenshot(driver, "hoverClickHereButtonColor.jpg");
 
         String hoverButtonColorAsHex = Color.fromString(hoverButtonColor).asHex();
         Assert.assertEquals(hoverButtonColorAsHex, "#2795b6");
