@@ -11,9 +11,9 @@ public class ZadanieDomowe6 extends BaseTest{
        driver.get("http://demo.guru99.com/test/drag_drop.html");
 
        Actions moveElement = new Actions(driver);
-       WebElement grabbedElement = driver.findElement(By.cssSelector(".button.button-orange"));
-       WebElement putItHere = driver.findElement(By.id("amt7"));
-       WebElement amountInTable = driver.findElement(By.id("t7"));
+       WebElement grabbedElement = driver.findElement(By.xpath("//*[@id=\"fourth\"]/a"));
+       WebElement putItHere = driver.findElement(By.xpath("//*[@id=\"amt7\"]/li"));
+       WebElement amountInTable = driver.findElement(By.xpath("//div[@id='t7']"));
 
        moveElement.dragAndDrop(grabbedElement, putItHere).build().perform();
 
