@@ -43,7 +43,6 @@ public class ZadanieDomowe8 extends BaseTest{
         List<WebElement> jobName = driver.findElements(By.className("offer-details__title-link"));
         List<WebElement> companyName = driver.findElements(By.className("offer-details__title-link"));
 
-        //for(String s = 0; s <)
 
 
 
