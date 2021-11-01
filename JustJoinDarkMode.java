@@ -10,7 +10,6 @@ public class JustJoinDarkMode extends BaseTest{
     @Test
     public void darkModeColorTest(){
 
-
         driver.get("https://justjoin.it/");
 
         WebElement background = driver.findElement(By.xpath("/html/body"));
@@ -26,11 +25,11 @@ public class JustJoinDarkMode extends BaseTest{
 
         Assert.assertEquals(lightModeButtonsColorHex, "#99a1ab");
 
-//        WebElement lightModeAllOffersField = driver.findElement(By.xpath("//a[@class='css-116ia3n']//div[@class='css-9ygpzv']"));
-//        String lightModeAllOffersFieldColor = lightModeAllOffersField.getCssValue("background-color");
-//        String lightModeAllOffersFieldColorRGB = Color.fromString(lightModeAllOffersFieldColor).asRgb();
-//
-//        Assert.assertEquals(lightModeAllOffersFieldColorRGB, "rgb(33, 33, 33)");
+        WebElement lightModeLogo = driver.findElement(By.id("logo-justjoin.it"));
+        String lightModeLogoFieldColor = lightModeLogo.getCssValue("fill");
+        String lightModeLogoFieldColorHex = Color.fromString(lightModeLogoFieldColor).asHex();
+
+        Assert.assertEquals(lightModeLogoFieldColorHex, "#37474f");
 
 
 
@@ -47,11 +46,11 @@ public class JustJoinDarkMode extends BaseTest{
         String darkModeButtonsColorRGBA = Color.fromString(darkModeButtonsColor).asRgba();
 
         Assert.assertEquals(darkModeButtonsColorRGBA, "rgba(255, 255, 255, 0.8)");
-//
-//        WebElement darkModeAllOffersField = driver.findElement(By.xpath("//*[@id=\"root\"]/div[2]/div[1]/div/div[1]/div[1]/a[2]/div"));
-//        String darkModeAllOffersFieldColor = darkModeAllOffersField.getCssValue("color");
-//        String darkModeAllOffersFieldColorRGB = Color.fromString(darkModeAllOffersFieldColor).asRgb();
-//
-//        Assert.assertEquals(darkModeAllOffersFieldColorRGB, "rgb(33, 33, 33)");
+
+        WebElement darkModeLogo = driver.findElement(By.id("logo-justjoin.it"));
+        String darkModeLogoFieldColor = darkModeLogo.getCssValue("fill");
+        String darkModeLogoFieldColorRGBA = Color.fromString(darkModeLogoFieldColor).asRgba();
+
+        Assert.assertEquals(darkModeLogoFieldColorRGBA, "rgba(255, 255, 255, 0.8)");
     }
 }
