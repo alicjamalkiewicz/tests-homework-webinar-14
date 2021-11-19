@@ -14,19 +14,20 @@ public class JustJoinDarkModeNicer extends BaseTest {
 
         driver.get("https://justjoin.it/");
 
-        WebElement background = driver.findElement(By.xpath("/html/body"));
+        //WebElement background = driver.findElement(By.xpath("/html/body")); - first solution
+        background = driver.findElement(By.xpath("/html/body")); //->correction
 
         String lightModeColor = background.getCssValue("background-color");
         String lightModeColorRGB = Color.fromString(lightModeColor).asRgb();
 
         Assert.assertEquals(lightModeColorRGB, "rgb(255, 255, 255)");
 
-        WebElement colorModeButton = driver.findElement(By.xpath("//span[normalize-space()='Brand Stories']"));
+        // WebElement colorModeButton = driver.findElement(By.xpath("//span[normalize-space()='Brand Stories']")); first solution
+        colorModeButton = driver.findElement(By.xpath("//span[normalize-space()='Brand Stories']")); //->correction
         String lightModeButtonsColor = colorModeButton.getCssValue("color");
         String lightModeButtonsColorHex = Color.fromString(lightModeButtonsColor).asHex();
 
         Assert.assertEquals(lightModeButtonsColorHex, "#99a1ab");
-
     }
 
 
